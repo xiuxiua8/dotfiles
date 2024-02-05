@@ -13,15 +13,17 @@ OLD_DOTFILES="dotfile_bk_$(date -u +"%Y%m%d%H%M%S")"
 mkdir $OLD_DOTFILES
 
 function backup_if_exists() {
-    if [ -f $1 ];
-    then
-      mv $1 $OLD_DOTFILES
+    if [ -f $1 ]; then
+        mv $1 $OLD_DOTFILES
     fi
-    if [ -d $1 ];
-    then
-      mv $1 $OLD_DOTFILES
+    if [ -d $1 ]; then
+        mv $1 $OLD_DOTFILES
+    fi
+    if [ -e $1 ]; then
+        mv $1 $OLD_DOTFILES
     fi
 }
+
 
 # Clean common conflicts
 backup_if_exists ~/.bash_profile
