@@ -23,6 +23,7 @@ alias dc="cd"
 if command -v exa > /dev/null; then
   alias ls=exa
   alias l="exa -1"
+  alias ll="exa -lha"
   alias la="exa -a"
 fi
 
@@ -42,6 +43,7 @@ alias gu='git pull'
 alias gg='git graph'
 # unalias gd
 alias gd='git diff'
+alias gl='git log --all --graph --decorate'
 alias gsu='git stash && git pull && git stash pop'
   # Note that gs is also ghostscript
 alias ghostscript="/usr/local/bin/gs"
