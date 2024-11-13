@@ -131,7 +131,7 @@ Plug 'ron89/thesaurus_query.vim'       " Synonym query
 
 " Other
 " Plug 'wakatime/vim-wakatime'           " Wakatime time tracking
-Plug 'ihsanturk/neuron.vim'            " For neuron Zettelkasten
+" Plug 'ihsanturk/neuron.vim'            " For neuron Zettelkasten
 Plug 'liuchengxu/vim-which-key'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
@@ -482,6 +482,7 @@ if !exists("*VSCodeNotify") && isdirectory($HOME . "/.vim/plugged/coc.nvim")
 
     let g:coc_custom_config = '1'
     let g:coc_node_path = $HOME . '/.neovim/node/bin/node'
+    let g:coc_node_path = '/opt/homebrew/bin/node'
     " let g:coc_disable_startup_warning = 1
 
     let g:vista_default_executive = 'coc'
