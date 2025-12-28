@@ -44,7 +44,11 @@ typeset -gU cdpath fpath mailpath path
 # Set the list of directories that Zsh searches for programs.
 path=(
   #/usr/local/{bin,sbin}
+  $HOME/{,s}bin(N)
+  /opt/{homebrew,local}/{,s}bin(N)
+  /usr/local/{,s}bin(N)
   $path
+  /opt/{bin,sbin}
 )
 
 #
@@ -64,4 +68,9 @@ fi
 
 setopt HIST_IGNORE_SPACE
 alias jrnl=" jrnl"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# Setting PATH for Python 3.12
+# The original version is saved in .zprofile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.12/bin:${PATH}"
+export PATH

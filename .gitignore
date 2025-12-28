@@ -17,3 +17,6 @@ vim/.vim/undodir
 vim/.vim/spell
 dotfile_bk_*
 todo.md
+
+.vscode/
+.kiro/
