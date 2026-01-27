@@ -52,7 +52,8 @@ if [[ -d ~/.zprezto/runcoms ]]; then
     # Create symlinks from zprezto runcoms to dotfiles
     for rcfile in zshrc zshenv zprofile zpreztorc zlogin zlogout; do
         if [[ -f "$DOTFILES_DIR/zsh/.zprezto/runcoms/$rcfile" ]]; then
-            ln -sf "$DOTFILES_DIR/zsh/.zprezto/runcoms/$rcfile" ~/.zprezto/runcoms/$rcfile
+            ln -sf "$DOTFILES_DIR/zsh/.zprezto/runcoms/$rcfile" "$HOME/.zprezto/runcoms/$rcfile"
+            ln -sf "$HOME/.zprezto/runcoms/$rcfile" "$HOME/.$rcfile"
         fi
     done
 fi
