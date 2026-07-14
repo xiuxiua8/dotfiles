@@ -25,6 +25,7 @@ if command -v exa > /dev/null; then
   alias l="exa -1"
   alias ll="exa -lha"
   alias la="exa -a"
+  alias c-d='claude --dangerously-skip-permissions'
 fi
 
 mvr () {

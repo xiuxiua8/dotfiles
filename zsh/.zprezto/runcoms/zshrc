@@ -110,3 +110,10 @@ export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
 test -f "/Users/zilong/.xmake/profile" && source "/Users/zilong/.xmake/profile"
 # <<< xmake <<<
 export PATH="/opt/anaconda3/bin:$PATH"
+
+#export ANTHROPIC_BASE_URL = "https://api.123everything.com"
+#export ANTHROPIC_AUTH_TOKEN = "sk-hbae00AQcrdy1CNpfXdW5c7P6rJaeuoPrr8z1rM9NDgfvu71"
+#export OPENAI_API_KEY=""
+
+# opencode
+export PATH=/Users/zilong/.opencode/bin:$PATH
