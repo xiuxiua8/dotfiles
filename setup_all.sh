@@ -8,7 +8,7 @@
 find . -name ".DS_Store" -exec rm {} \;
 
 # PROGRAMS=(alias bash env git python scripts stow tmux vim zsh)
-PROGRAMS=(alias aspell bash env git latex python scripts stow tmux vim zsh mac terminal)
+PROGRAMS=(alias aspell bash env git herdr latex python scripts stow tmux vim zsh mac terminal)
 OLD_DOTFILES="dotfile_bk_$(date -u +"%Y%m%d%H%M%S")"
 mkdir $OLD_DOTFILES
 

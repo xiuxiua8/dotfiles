@@ -1,0 +1,38 @@
+# tmux-inspired Herdr configuration.
+
+[theme]
+name = "gruvbox"
+
+[terminal]
+new_cwd = "follow"
+
+[keys]
+prefix = "ctrl+a"
+reload_config = "prefix+r"
+detach = "prefix+d"
+new_tab = "prefix+c"
+previous_tab = "prefix+p"
+next_tab = "prefix+n"
+switch_tab = "prefix+1..9"
+split_vertical = "prefix+|"
+split_horizontal = "prefix+minus"
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+last_pane = "prefix+backslash"
+close_pane = "prefix+x"
+zoom = "prefix+z"
+resize_mode = "prefix+shift+r"
+
+[ui]
+mouse_capture = true
+pane_borders = true
+pane_gaps = false
+agent_panel_sort = "spaces"
+
+[ui.toast]
+delivery = "off"
+
+[ui.sound]
+enabled = false
