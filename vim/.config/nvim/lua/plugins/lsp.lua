@@ -27,7 +27,7 @@ local function configure_lsp_keymaps()
 
       map('n', 'gr', vim.lsp.buf.references, 'References')
       map('n', 'gi', vim.lsp.buf.implementation, 'Go to implementation')
-      map('n', 'K', vim.lsp.buf.hover, 'Hover documentation')
+      map('n', 'gD', vim.lsp.buf.hover, 'Hover documentation')
       map('n', '<leader>rn', vim.lsp.buf.rename, 'Rename symbol')
       map({ 'n', 'x' }, '<leader>ca', vim.lsp.buf.code_action, 'Code action')
     end,
