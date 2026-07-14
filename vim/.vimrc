@@ -452,9 +452,11 @@ let g:rainbow_active = 1
 " ALE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_enabled = 1
+" Disable ALE's LSP features to avoid conflicts with coc.nvim and Neovim's built-in LSP
+let g:ale_disable_lsp = 1
 " For quick startup
 let g:ale_lint_on_enter = 0
-let g:ale_lint_on_save = 1
+let g:ale_lint_on_save = 0
 " Set this variable to 1 to fix files when you save them.
 let g:ale_fix_on_save = 1
 let g:ale_float_preview=1
@@ -740,7 +742,34 @@ nnoremap <Leader>1 1gt<CR>
 nnoremap <Leader>2 2gt<CR>
 nnoremap <Leader>3 3gt<CR>
 nnoremap <Leader>4 4gt<CR>
-nnoremap <Leader>5 5gt<CR>
+" C++ 编译运行系统
+" 存储自定义编译命令的变量
+let g:cpp_compile_cmd = ''
+
+" <Leader>6 设置自定义编译命令
+autocmd FileType cpp nnoremap <buffer> <Leader>6 :call SetCppCompileCmd()<CR>
+
+" <Leader>5 执行编译运行
+autocmd FileType cpp nnoremap <buffer> <Leader>5 :call RunCppCompile()<CR>
+
+function! SetCppCompileCmd()
+    let cmd = input('please input complie command:', g:cpp_compile_cmd)
+    if cmd != ''
+        let g:cpp_compile_cmd = cmd
+        echo "\n已保存编译命令: " . cmd
+    endif
+endfunction
+
+function! RunCppCompile()
+    write
+    if g:cpp_compile_cmd != ''
+        execute 'split | terminal ' . g:cpp_compile_cmd
+    else
+        " 默认简单编译
+        execute 'split | terminal g++ -std=c++20 % -o %< && ./%<'
+    endif
+endfunction
+
 nnoremap <Leader>6 6gt<CR>
 nnoremap <Leader>7 7gt<CR>
 nnoremap <Leader>8 8gt<CR>
