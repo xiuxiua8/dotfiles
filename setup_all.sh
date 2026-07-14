@@ -41,7 +41,8 @@ DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Backup and link zprezto runcoms to dotfiles
 if [[ -d ~/.zprezto/runcoms ]]; then
-    for f in ~/.zprezto/runcoms/z*(N); do
+    for f in "$HOME"/.zprezto/runcoms/z*; do
+        [[ -e "$f" || -L "$f" ]] || continue
         if [[ -f "$f" && ! -L "$f" ]]; then
             mv "$f" $OLD_DOTFILES
         elif [[ -L "$f" ]]; then

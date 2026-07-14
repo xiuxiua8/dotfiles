@@ -23,7 +23,7 @@
 
 **Files:**
 - Create: `herdr/.config/herdr/config.toml`
-- Modify: `setup_all.sh:11`
+- Modify: `setup_all.sh:11,43-45`
 
 **Interfaces:**
 - Consumes: Herdr 0.7.3 configuration fields and the repository's existing `PROGRAMS` Stow loop.
@@ -119,6 +119,25 @@ git commit -m "feat: add tmux-inspired Herdr configuration"
 ```
 
 Expected: one commit containing only the Herdr configuration and setup script change.
+
+- [ ] **Step 6: Remove the pre-existing Bash parse blocker**
+
+The setup script has a Bash shebang but uses the Zsh-only `z*(N)` glob. Replace
+that loop header with Bash-compatible glob handling:
+
+```bash
+for f in "$HOME"/.zprezto/runcoms/z*; do
+    [[ -e "$f" || -L "$f" ]] || continue
+```
+
+Run:
+
+```bash
+bash -n setup_all.sh
+```
+
+Expected: exit zero with no output, proving future setup runs can reach the
+Stow loop that now includes Herdr.
 
 ### Task 2: Migrate and Reload the Local Configuration
 

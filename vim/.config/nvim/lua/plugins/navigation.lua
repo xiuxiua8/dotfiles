@@ -18,6 +18,7 @@ return {
           grep = { hidden = true, ignored = true },
         },
       },
+      scroll = { enabled = true },
       notifier = { enabled = true },
       input = { enabled = true },
       dashboard = { enabled = true },
