@@ -1,7 +1,11 @@
+# Kiro Shell Integration - MUST be before p10k instant prompt
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+# Skip instant prompt in Kiro to avoid shell integration conflicts
+if [[ "$TERM_PROGRAM" != "kiro" && -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
@@ -41,7 +45,7 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000000
 export SAVEHIST=$HISTSIZE
 setopt EXTENDED_HISTORY
-setopt HIST_IGNORE_SPACE 
+setopt HIST_IGNORE_SPACE
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_SAVE_NO_DUPS
 
@@ -75,14 +79,14 @@ typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/opt/miniconda/etc/profile.d/conda.sh" ]; then
-        . "/opt/miniconda/etc/profile.d/conda.sh"
+    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/opt/miniconda/bin:$PATH"
+        export PATH="/opt/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -99,3 +103,17 @@ if [ -f ~/.aliases ]; then
     source ~/.aliases
 fi
 
+# PATH=/usr/local/texlive/2023/bin/universal-darwin:/Users/zilong/.cargo/bin:/Users/zilong/.poetry/bin:/opt:/Users/zilong/.neovim/bin:/Users/zilong/bin:/usr/local/bin:/opt/miniconda/bin:/Users/zilong/.cargo/bin:/Users/zilong/.poetry/bin:/opt:/Users/zilong/.neovim/bin:/Users/zilong/bin:/usr/local/bin:/opt/miniconda/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin:/Library/TeX/texbin:/Users/zilong/.cargo/bin:/Users/zilong/.poetry/bin:/opt:/Users/zilong/.neovim/bin:/Users/zilong/bin:/opt/miniconda/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/opt/bin:/opt/sbin:/Users/zilong/.fzf/bin:/Users/zilong/.neovim/node/bin:/Users/zilong/go/bin:/Users/zilong/.neovim/node/bin:/Users/zilong/go/bin:/Users/zilong/.neovim/node/bin:/Users/zilong/go/bin
+
+export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
+# >>> xmake >>>
+test -f "/Users/zilong/.xmake/profile" && source "/Users/zilong/.xmake/profile"
+# <<< xmake <<<
+export PATH="/opt/anaconda3/bin:$PATH"
+
+#export ANTHROPIC_BASE_URL = "https://api.123everything.com"
+#export ANTHROPIC_AUTH_TOKEN = "sk-hbae00AQcrdy1CNpfXdW5c7P6rJaeuoPrr8z1rM9NDgfvu71"
+#export OPENAI_API_KEY=""
+
+# opencode
+export PATH=/Users/zilong/.opencode/bin:$PATH

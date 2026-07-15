@@ -1,0 +1,42 @@
+local o = vim.opt
+
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+o.expandtab = true
+o.shiftwidth = 2
+o.tabstop = 2
+o.softtabstop = 2
+o.number = true
+o.relativenumber = true
+o.cursorline = true
+o.showcmd = true
+o.showmatch = true
+o.showmode = false
+o.laststatus = 2
+o.ignorecase = true
+o.smartcase = true
+o.incsearch = true
+o.hlsearch = true
+o.clipboard = 'unnamedplus'
+o.scrolloff = 12
+o.undofile = true
+o.mouse = 'a'
+o.errorbells = false
+o.visualbell = true
+o.linebreak = true
+o.hidden = true
+o.backspace = { 'indent', 'eol', 'start' }
+o.wildmenu = true
+o.wildignore:append({ '*/.git/*', '*/tmp/*', '*.swp' })
+o.foldenable = true
+o.foldlevelstart = 10
+o.foldnestmax = 10
+o.foldmethod = 'indent'
+o.splitbelow = true
+o.splitright = true
+o.signcolumn = 'yes'
+o.termguicolors = true
+o.background = 'dark'
+o.updatetime = 100
+o.timeoutlen = 400
