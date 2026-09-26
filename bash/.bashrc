@@ -52,3 +52,6 @@ fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 HISTIGNORE="$HISTIGNORE:jrnl *"
+. "$HOME/.cargo/env"
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"

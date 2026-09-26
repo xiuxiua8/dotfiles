@@ -25,6 +25,7 @@ if command -v exa > /dev/null; then
   alias l="exa -1"
   alias ll="exa -lha"
   alias la="exa -a"
+  alias c-d='claude --dangerously-skip-permissions'
 fi
 
 mvr () {
@@ -46,7 +47,7 @@ alias gd='git diff'
 alias gl='git log --all --graph --decorate'
 alias gsu='git stash && git pull && git stash pop'
   # Note that gs is also ghostscript
-alias ghostscript="/usr/local/bin/gs"
+alias ghostscript="/opt/homebrew/bin/gs"
 function gD(){
     git diff $@ | ydiff
 }
@@ -248,11 +249,11 @@ case "$(uname -s)" in
      for i in awk cat chgrp chmod chown chroot cut date df du echo egrep env false fgrep find grep join kill link ln logname make mkdir mknod mktemp mv nice nohup paste perf printf pwd readlink realpath rm rmdir sed sort split tac tail tar tee test touch tr true truncate tty uniq unlink unzip uptime users who whoami yes zip; do
        alias_if_exists "$i" "g$i"
      done
-     alias_if_exists "id" "/usr/local/bin/gid"
-     alias rm="/usr/local/bin/grm -i"
-     alias mv="/usr/local/bin/gmv -i"
-     alias cp="/usr/local/bin/gcp -i"
-     # alias_if_exists "ls" "/usr/local/bin/gls"
+     alias_if_exists "id" "/opt/homebrew/bin/gid"
+     alias rm="/opt/homebrew/bin/grm -i"
+     alias mv="/opt/homebrew/bin/gmv -i"
+     alias cp="/opt/homebrew/bin/gcp -i"
+     # alias_if_exists "ls" "/opt/homebrew/bin/gls"
      alias veracrypt="/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text"
      alias sudoedit="sudo -E vim"
      alias casks="brew search --cask"
@@ -261,6 +262,7 @@ case "$(uname -s)" in
      alias casks="brew search --cask"
      alias caskl="brew list --cask"
      alias casko="brew outdated --cask"
+     alias binstall="brew install"
      op() {
        local file
        if [[ -f $1 ]]; then

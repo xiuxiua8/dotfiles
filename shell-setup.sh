@@ -49,18 +49,53 @@ pull_repo $HOME/.tmux/plugins/tpm
 #######################
 # ZSH
 #######################
+
+# Get dotfiles directory (where this script is located)
+DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
+
 if [[ ! -d $HOME/.zprezto ]]; then
     git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-
-    setopt EXTENDED_GLOB
-    for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-      ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-    done
 fi
+
 cd $HOME/.zprezto
 git pull
 git submodule update --init --recursive
-cd - 
+cd -
+
+# Create symlinks from home to zprezto runcoms (standard prezto behavior)
+# This ensures ~/.zshrc -> ~/.zprezto/runcoms/zshrc etc.
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+    target="${ZDOTDIR:-$HOME}/.${rcfile:t}"
+    if [[ -f "$target" && ! -L "$target" ]]; then
+        rm "$target"
+    elif [[ -L "$target" ]]; then
+        rm "$target"
+    fi
+    ln -sf "$rcfile" "$target"
+done
+
+# Link zprezto runcoms to dotfiles (so dotfiles manages the actual config)
+for rcfile in zshrc zshenv zprofile zpreztorc zlogin zlogout; do
+    # Remove original file in zprezto runcoms
+    if [[ -f "$HOME/.zprezto/runcoms/$rcfile" && ! -L "$HOME/.zprezto/runcoms/$rcfile" ]]; then
+        rm "$HOME/.zprezto/runcoms/$rcfile"
+    elif [[ -L "$HOME/.zprezto/runcoms/$rcfile" ]]; then
+        rm "$HOME/.zprezto/runcoms/$rcfile"
+    fi
+    # Create symlink to dotfiles
+    if [[ -f "$DOTFILES_DIR/zsh/.zprezto/runcoms/$rcfile" ]]; then
+        ln -sf "$DOTFILES_DIR/zsh/.zprezto/runcoms/$rcfile" "$HOME/.zprezto/runcoms/$rcfile"
+    fi
+done
+
+# Link p10k.zsh to dotfiles
+if [[ -f "$HOME/.p10k.zsh" && ! -L "$HOME/.p10k.zsh" ]]; then
+    rm "$HOME/.p10k.zsh"
+fi
+if [[ -f "$DOTFILES_DIR/zsh/.p10k.zsh" ]]; then
+    ln -sf "$DOTFILES_DIR/zsh/.p10k.zsh" "$HOME/.p10k.zsh"
+fi 
 
 mkdir -p $HOME/.zsh
 
